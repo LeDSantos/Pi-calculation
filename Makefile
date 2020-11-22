@@ -1,11 +1,16 @@
-CC=gcc-9
-CFLAGS=-fopenmp -O3
+CC=gcc
+CFLAGS=-Wall -fopenmp
 
-default: main.c
-	$(CC) $(CFLAGS) main.c -o pi
+all: gauss montecarlo simpson
 
-make run: pi
-	./pi
+gauss: gauss.c
+	$(CC) $(CFLAGS) gauss.c -o pi_gauss
+
+montecarlo: montecarlo_pi.c
+	$(CC) $(CFLAGS) montecarlo_pi.c -o pi_montecarlo
+
+simpson: simpson.c
+	$(CC) $(CFLAGS) simpson.c -o pi_simpson
 
 clean:
-	rm pi
+	rm pi_*
