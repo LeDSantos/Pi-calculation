@@ -35,8 +35,11 @@ int main(int c, char** argv){
         n=atoi(argv[1]);
         printf("%d\n",n);
     }
+    if(ENERGIA){
+        rapl_init();
+        start_rapl_sysfs();
+    }
     double begin=omp_get_wtime();
-
     //clock_t begin = clock();
     h=(b-a)/n;
     x=malloc((n+1)*sizeof(double));
