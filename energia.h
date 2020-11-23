@@ -6,6 +6,8 @@
 #include <string.h>
 #include <time.h>
 
+#define ENERGIA 1
+
 void rapl_init(void);
 void start_rapl_sysfs();
 double end_rapl_sysfs();
