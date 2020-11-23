@@ -11,6 +11,8 @@ miquelbernat.laporta@e-campus.uab.cat
 #include <time.h>
 #include <omp.h>
 
+#include "energia.h" 
+
 #define SEED time(NULL)
 
 double pi(int n){
@@ -20,7 +22,7 @@ double pi(int n){
   double x,y,z;
   count = 0;
 
-  #pragma omp for
+  #pragma omp parallel for
   for(i = 0; i < n; i++){
 
     x = (double)rand() / RAND_MAX;
@@ -35,7 +37,7 @@ double pi(int n){
   return pi_val;
 }
 
-int main(){
+int main(int c, char** argv){
 
   //#pragma omp parallel
   //{
@@ -45,18 +47,30 @@ int main(){
 
   double pi_value;
   int n;
-  printf("Introduce the number of iterations n:\n");
-  scanf("%d", &n);
+  printf("Introduce the number of iterations n: \n");
+  if(c<2)
+    scanf("%d", &n);
+  else{
+    n=atoi(argv[1]);
+    printf("%d\n",n);
+  }
 
-  clock_t begin = clock();
-  //#pragma omp parallel shared(pi_value)//ESTAVA PARALELIZADO ERRADO
-  //{
+  if(ENERGIA){
+    rapl_init();
+    start_rapl_sysfs();
+  }
+  //clock_t begin = clock();
+  double begin=omp_get_wtime();
   pi_value = pi(n);
   //}
-  clock_t end = clock();
-
+  //clock_t end = clock();
+  double end=omp_get_wtime();
+  if(ENERGIA){
+    double energy = end_rapl_sysfs();
+    printf("Energia consumida em Joules:   %.5f\n", energy); // (6) imprimir consumo de energia em Joules
+  }
   printf("Approximate pi value: %.30G\n", pi_value);
-  double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+  double time_spent = (double)(end - begin);// / CLOCKS_PER_SEC;
   printf("Final execution time: %.15G sec\n", time_spent);
   return 0;
 }

@@ -9,6 +9,8 @@ miquelbernat.laporta@e-campus.uab.cat
 #include <stdlib.h>
 #include <time.h>
 
+#include "energia.h" 
+
 #define EPSILON 0.01 //Bisection method tolerance
 #define TOL 1.e-8 //Newton method tolerance
 #define KMAX 100 //Max iterations allowed in Newton method
