@@ -20,7 +20,7 @@ double pi(int n){
   double x,y,z;
   count = 0;
 
-  #pragma omp parallel
+  #pragma omp for
   for(i = 0; i < n; i++){
 
     x = (double)rand() / RAND_MAX;
@@ -37,11 +37,11 @@ double pi(int n){
 
 int main(){
 
-  #pragma omp parallel
-  {
-    printf("teste\n");
-  }
-  return 0;
+  //#pragma omp parallel
+  //{
+  //  printf("teste\n");
+  //}
+  //return 0;
 
   double pi_value;
   int n;
@@ -49,7 +49,7 @@ int main(){
   scanf("%d", &n);
 
   clock_t begin = clock();
-  //#pragma omp parallel shared(pi_value)
+  //#pragma omp parallel shared(pi_value)//ESTAVA PARALELIZADO ERRADO
   //{
   pi_value = pi(n);
   //}
