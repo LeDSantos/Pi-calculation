@@ -7,6 +7,7 @@ miquelbernat.laporta@e-campus.uab.cat
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <omp.h>
 
 #include "energia.h" 
 
@@ -27,7 +28,7 @@ int main(int c, char** argv){
     double temp;
     double *x;
 
-    printf("Introduce the number of nodes:%d\n",n);
+    printf("Introduce the number of nodes:\n");
     if(c<2)
         scanf("%d", &n);
     else{
