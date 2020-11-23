@@ -1,6 +1,8 @@
 # Pi-
 Pi calculation implementations
 
+**chmod 777 rodar.sh e ./rodar.sh para executar tudo**
+
 The following programs implement known numerical methods for calculating pi.
 Simpson.c uses the well known Newton-Côtes style algortihm.
 Gauss.c uses Legendre-Gaussian quadrature method. Legendre's roots are calculated using bisection and Newton for node approximation.
