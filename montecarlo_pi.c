@@ -19,16 +19,16 @@ double pi(int n){
 
   srand(SEED);
   int i, count;
-  double x,y,z;
+  double x,y;//,z;
   count = 0;
 
-  #pragma omp parallel for
+  #pragma omp parallel for private(x,y) reduction (+:count)
   for(i = 0; i < n; i++){
 
     x = (double)rand() / RAND_MAX;
     y = (double)rand() / RAND_MAX;
-    z = x * x + y * y;
-    if( z <= 1) count++;
+    //z = x * x + y * y;
+    if( x * x + y * y <= 1) count+=1;
     //printf("Current interation %d with pi value: %lf\n",i,(double)count / (double)n * 4);
   }
 
