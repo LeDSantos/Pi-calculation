@@ -4,7 +4,7 @@ make clean
 make all
 
 #numero de interacoes
-N=100000000
+N=1000000
 
 export OMP_NUM_THREADS=1
 echo -en "\n$OMP_NUM_THREADS threads: SERIAL----------------\n"
@@ -13,6 +13,9 @@ echo -en "\nSIMPSON\n"
 
 echo -en "\nMONTECARLO\n"
 ./pi_montecarlo $N
+
+echo -en "\nMONTECARLOpyhton\n"
+python3 montecarlo.py $N
 
 echo -en "\nINTEGRAL\n"
 ./pi_integral $N
@@ -23,8 +26,8 @@ export OMP_NUM_THREADS=$NPROC
 
 echo -en "\n$OMP_NUM_THREADS threads: PARALELO--------------\n"
 
-echo -en "\nMONTECARLO\n"
-./pi_montecarlo $N
+#echo -en "\nMONTECARLO\n"
+#./pi_montecarlo $N
 
 echo -en "\nINTEGRAL\n"
 ./pi_integral $N
