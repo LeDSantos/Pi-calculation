@@ -28,7 +28,8 @@ double pi(int n){
     x = (double)rand() / RAND_MAX;
     y = (double)rand() / RAND_MAX;
     //z = x * x + y * y;
-    if( x * x + y * y <= 1) count+=1;
+    //if( x * x + y * y <= 1) count+=1;
+    count+=( x * x + y * y <= 1);
     //printf("Current interation %d with pi value: %lf\n",i,(double)count / (double)n * 4);
   }
 
