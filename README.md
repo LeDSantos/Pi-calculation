@@ -1,7 +1,8 @@
-# Pi-
-Pi calculation implementations
+# Pi - diferentes implementações
 
 **chmod 777 rodar.sh e ./rodar.sh para executar tudo**
+
+Pi calculation implementations
 
 The following programs implement known numerical methods for calculating pi.
 Simpson.c uses the well known Newton-Côtes style algortihm.
